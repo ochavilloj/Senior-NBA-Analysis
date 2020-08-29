@@ -1,0 +1,277 @@
+---
+title: "R Notebook for Senior Project"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+setwd("/Volumes/Jeff's/R - Statistical Learning/Senior Project")
+library(readr)
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+View(BR)
+View(SA)
+```
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+plot(MD$TSP, MD$SA1819.log,
+     xlab = "Scoring Efficiency",
+     ylab = "Money",
+     main = "PT% vs. Money")
+##View(plot)
+```
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+plot(MD$`3PAr`, MD$SA1819.log,
+     xlab = "3Par",
+     ylab = "Money",
+     main = "3Par% vs. Money")
+##View(plot)
+```
+```{r} 
+#Graph without log
+
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+
+head(MD)
+plot(MD$`PER`, MD$SA1819,
+     xlab = "PER",
+     ylab = "Salary",
+     main = "PER vs. Salary without Log Transformation")
+
+```
+
+```{r} 
+#Graph with log
+
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+
+head(MD)
+plot(MD$`PER`, MD$SA1819.log,
+     xlab = "PER",
+     ylab = "Salary",
+     main = "PER vs. Salary with Log Transformation ")
+
+```
+
+```{r} 
+#Supposed to be for position but don't know how to visualize correlation.. use box plots boxplot(y~x)
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player") 
+##ND <- na.omit(MD)
+head(MD)
+boxplot(SA1819.log~Pos,data=MD, main="Position vs. Salary", 
+   xlab="Position", ylab="Salaries")
+##plot(MD$Pos, MD$SA1819.log,
+     #xlab = "3Par",
+    # ylab = "Money",
+     #xlim = c(0,1),
+   ##  ylim = c(0,),
+    ##main = "PT% vs. Money" )
+#reg=lm(SA1819.log~Pos, data=MD)
+#abline(reg)
+##View(plot)
+```
+
+```{r} 
+##Rebound vs Money
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+
+plot(MD$TRBP, MD$SA1819.log,
+     xlab = "TRBP",
+     ylab = "Money",
+     main = "Total Rebound % vs. Money")
+reg=lm(SA1819.log~TRBP, data=MD)
+abline(reg)
+##View(plot)
+```
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+plot(MD$ASTP, MD$SA1819.log,
+     xlab = "Assist Total Percentage",
+     ylab = "Money",
+     main = "Assist Total Percentange vs. Money")
+reg=lm(SA1819.log~ASTP, data=MD)
+abline(reg)
+##View(plot)
+```
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+lm.fit = lm(SA1819.log~Age+MP+TSP+ASTP, data=MD)
+summary(lm.fit)
+
+## FOR GUARDS  
+##View(plot)
+```
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+lm.fit = lm(SA1819.log~Age+MP+FTr, data=MD)
+summary(lm.fit)
+
+##View(plot)
+```
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+lm.fit = lm(SA1819.log~Age+MP+TRBP, data=MD)
+summary(lm.fit)
+
+##View(plot)
+```
+
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+lm.fit = lm(SA1819.log~Age+MP+ASTP, data=MD)
+summary(lm.fit)
+
+##View(plot)
+```
+
+```{r}
+# one that are categorila as.factor or factor(Pos)
+BR <- read_csv("Basketball-Reference.csv") 
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+fit = lm(SA1819.log~Age+MP+PER, data=MD)
+summary(fit)
+
+##View(plot)
+```
+
+```{r}
+# one that are categorila as.factor or factor(Pos)
+BR <- read_csv("Basketball-Reference.csv") 
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##Age+MP+TSP
+y.sal = 7.08E-02 + 7.036-04
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop
+# one that are categorila as.factor or factor(Pos)
+
+salary = NULL
+for(i in 18:35)
+{
+  y.hat=1.193e+01+ 7.081e-02*(i) + 7.036e-04*(1263.856) + 1.144e+00*(0.610)+5.797e-03*(13.52326)
+  salary=c(salary, exp(y.hat))
+}
+plot(18:35, salary)
+
+
+##View(plot)
+```
+
+```{r}
+BR <- read_csv("Basketball-Reference.csv") 
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+##ND <- na.omit(MD)
+head(MD)
+lm.fit = lm(SA1819.log~Age+G+MP+PER+TSP+TRBP+ASTP+STLP+BLKP+TOVP, data=MD)
+summary(lm.fit)
+
+## FOR GUARDS  
+##View(plot)
+```
+
+```{r}
+
+#Loop everything from above
+
+salary = NULL
+for(i in 18:35)
+{
+  y.hat= 1.193e+01+ 7.081e-02*(i) + 7.036e-04*(1263.856) + 1.144e+00*(0.610)+5.797e-03*(13.52326)
+  salary=c(salary, exp(y.hat))
+}
+plot(18:35, salary)
+
+
+```
+
+
+```{r}
+# Let's build a for loop
+# one that are categorila as.factor or factor(Pos)
+
+salary = NULL
+for(i in 18:35)
+{
+  y.hat=1.193e+01+ 7.081e-02*(i) + 7.036e-04*(1263.856) + 1.144e+00*(0.610)+5.797e-03*(13.52326)
+  salary=c(salary, exp(y.hat))
+}
+plot(18:35, salary)
+
+
+##View(plot)
+```
+
+```{r}
+#correlation calculations
+
+cor(MD$SA1819.log, MD$TSP, use = "complete.obs")
+cor(MD$SA1819.log, MD$MP, use = "complete.obs")
+cor(MD$SA1819.log, MD$G, use = "complete.obs")
+cor(MD$SA1819.log, MD$Age, use = "complete.obs")
+cor(MD$SA1819.log, MD$PER, use = "complete.obs")
+cor(MD$SA1819.log, MD$ASTP, use = "complete.obs")
+cor(MD$SA1819.log, MD$OBPM, use = "complete.obs")
+cor(MD$SA1819.log, MD$PER, use = "complete.obs")
+cor(MD$SA1819.log, MD$FTr, use = "complete.obs")
+cor(MD$SA1819.log, MD$FTr, use = "complete.obs")
+cor(MD$SA1819.log, MD$OWS, use = "complete.obs")
+
+```
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

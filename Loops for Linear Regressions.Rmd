@@ -1,0 +1,250 @@
+---
+title: "Loops for Senior Correlation Project"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+setwd("/Volumes/Jeff's/R - Statistical Learning/Senior Project")
+library(readr)
+BR <- read_csv("Basketball-Reference.csv")
+SA <- read_csv("Salary 2018-2022.csv")
+MD <- merge(BR,SA, by="Player")
+View(BR)
+View(SA)
+```
+
+```{r}
+# Let's build a for loop
+# one that are categorila as.factor or factor(Pos)
+
+salary = NULL
+for(i in 18:35)
+{
+  y.hat=1.193e+01+ 7.081e-02*(i) + 7.036e-04*(1263.856) + 1.144e+00*(0.610)+5.797e-03*(13.52326)
+  salary=c(salary, exp(y.hat))
+}
+plot(18:35, salary,
+     xlab = "Age",
+     ylab = "Salary",
+     main = "Age vs Salary")
+
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for Age being increments
+
+salary = NULL
+for(i in 19:35)
+{
+  y.hat=13.5876287 + 0.0677285*(i) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(19:35, salary,
+     xlab = "Age",
+     ylab = "Salary",
+     main = "Age vs Salary")
+
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for G being increments. 
+
+salary = NULL
+for(i in 1:82)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*i) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(1:82, salary,
+     xlab = "Games Played",
+     ylab = "Salary",
+     main = "Games Played")
+
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for MP being increments
+
+salary = NULL
+for(i in 1260:3030)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*i + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(1260:3030, salary,
+     xlab = "Minutes Played",
+     ylab = "Salary",
+     main = "Minutes Played")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:31)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*i + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(0:31, salary,
+     xlab = "PER",
+     ylab = "Salary",
+     main = "Point Efficiency Rating to Salary")
+
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in seq(0,1,by=0.1))
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*i) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(seq(0,1,by=0.1), salary,
+     xlab = "TSP",
+     ylab = "Salary",
+     main = "True Shooting Percentage to Salary")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:29)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*i) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(0:29, salary,
+     xlab = "TRBP",
+     ylab = "Salary",
+     main = "Total Rebound Percentage to Salary")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:50)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*i) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(0:50, salary,
+     xlab = "ASTP",
+     ylab = "Salary",
+     main = "Assist Total Percentage to Salary")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:25)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*i) + (-0.0030252*1.680761) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(0:25, salary,
+     xlab = "STLP",
+     ylab = "Salary",
+     main = "Steals Total Percentage to Salary")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:10)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*i) + 0.0152968*12.84608434
+  salary=c(salary, exp(y.hat))
+}
+plot(0:10, salary,
+     xlab = "BLKP",
+     ylab = "Salary",
+     main = "Block Total Percentage to Salary")
+
+##View(plot)
+```
+
+```{r}
+# Let's build a for loop for PER being increments
+
+salary = NULL
+for(i in 0:45)
+{
+  y.hat=13.5876287 + 0.0677285*(26.14799) + (-0.0198944*52.81818) + 0.0011564*1263.856 + 0.0864242*14.1537 + (-1.916670*0.527120846) + (-0.0236938*10.18562) + (-0.0196968*13.52326) + (-0.1743163*1.646934) + (-0.0030252*1.680761) + 0.0152968*i
+  salary=c(salary, exp(y.hat))
+}
+plot(0:45, salary,
+     xlab = "TOVP",
+     ylab = "Salary",
+     main = "Turnover Percentage to Salary")
+
+##View(plot)
+```
+
+
+```{r}
+# loop that checks the error total 
+
+salary = NULL
+for(i in 1:length(MD$Player))
+{
+  y.hat=13.5876287 + 0.0677285*(MD$Age[i]) + (-0.0198944*(MD$G[i])) + 0.0011564*(MD$MP[i]) + 0.0864242*(MD$PER[i]) + (-1.916670*(MD$TSP[i])) + (-0.0236938*(MD$TRBP[i])) + (-0.0196968*(MD$ASTP[i])) + (-0.1743163*(MD$STLP[i])) + (-0.0030252*(MD$BLKP[i])) + 0.0152968*(MD$TOVP[i])
+  salary=c(salary, exp(y.hat))
+}
+y=sqrt(mean((salary[!is.na(salary)] - MD$SA1819[!is.na(salary)])^2))
+#plot(0:25, salary)
+#mean(MD$SA1819)
+#plot(salary, MD$SA1819)
+#abline(0,1)
+#plot(log(salary), log(MD$SA1819))
+#abline(0,1)
+#hist(MD$SA1819)
+#sd(MD$SA1819)
+
+##View(plot)
+``` 
+
+```{r}
+#Demo for Giannis  
+y.hat=13.5876287 + 0.0677285*(23) + (-0.0198944*75) + 0.0011564*2756 + 0.0864242*27.3 + (-1.916670*0.598) + (-0.0236938*16.0) + (-0.0196968*23.7) + (-0.1743163*2.0) + (-0.0030252*3.3) + 0.0152968*11.7
+
+exp(13.5876287 + 0.0677285*(23) + (-0.0198944*75) + 0.0011564*2756 + 0.0864242*27.3 + (-1.916670*0.598) + (-0.0236938*16.0) + (-0.0196968*23.7) + (-0.1743163*2.0) + (-0.0030252*3.3) + 0.0152968*11.7)
+
+
+``` 
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
